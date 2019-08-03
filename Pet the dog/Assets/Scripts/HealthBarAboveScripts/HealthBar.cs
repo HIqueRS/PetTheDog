@@ -18,7 +18,7 @@ public class HealthBar : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		localScale.x = 2 - 2*Dog.GetComponent<Dog_Movement>().pet_bar();
+		localScale.x = 2 - 2*Dog.GetComponent<Dog_Behaviour>().pet_bar();
 		transform.localScale = localScale;
 	}
 }
