@@ -5,7 +5,7 @@ using UnityEngine;
 public class Rubing : MonoBehaviour
 {
 
-    public GameObject test;
+   
 
     // Start is called before the first frame update
     void Start()
