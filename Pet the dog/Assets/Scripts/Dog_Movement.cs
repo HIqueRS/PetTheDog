@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Dog_Movement : MonoBehaviour
 {
-    
+
     public GameObject Objective;
+    public GameObject player;
+    public GameObject Peting_bar;
 
     private float speed;
     public float speed_p;
@@ -18,6 +21,7 @@ public class Dog_Movement : MonoBehaviour
     public Sprite[] sprite_dog_m;
     public Sprite[] sprite_dog_g;
 
+    private float max_pet;
     public int pet_var;
     public Vector2 Min_Mov;
     public int pet_var_p;
@@ -27,9 +31,13 @@ public class Dog_Movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+       
+
         Size_Tipe = Random.Range(0, 3);
 
-        switch(Size_Tipe)
+        player = GameObject.Find("Player");
+
+        switch (Size_Tipe)
         {
             case 0:
                 Max_dog = sprite_dog_p.Length;
@@ -57,15 +65,18 @@ public class Dog_Movement : MonoBehaviour
                 break;
         }
 
-        
+        max_pet = pet_var;
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(pet_var * 100 / max_pet);
+
         float step = speed * Time.deltaTime;
 
-
+        
 
         transform.position = Vector3.MoveTowards(transform.position, Objective.transform.position, step);
 
@@ -94,6 +105,11 @@ public class Dog_Movement : MonoBehaviour
 
         if (pet_var < 0)
         {
+            if (player.GetComponent<Colliding>().Dog_count > 0)
+            {
+                player.GetComponent<Colliding>().Dog_count -= 1;
+            }
+            
             Destroy(gameObject);
         }
     }
@@ -101,5 +117,11 @@ public class Dog_Movement : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log(collision.gameObject.name);
+    }
+
+    public float pet_bar()
+    {
+
+        return (pet_var * 100 / max_pet)/100;
     }
 }

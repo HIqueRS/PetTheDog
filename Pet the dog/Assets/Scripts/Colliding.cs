@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Colliding : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class Colliding : MonoBehaviour
     public Slider slider;
 
     private bool Dog_came = false;
-    private int Dog_count = 0;
+    public int Dog_count = 0;
    
 
     // Start is called before the first frame update
@@ -24,6 +25,11 @@ public class Colliding : MonoBehaviour
        if (Dog_came)
         {
             slider.value -= 10 * Time.deltaTime * Dog_count;
+        }
+
+       if(slider.value == 0)
+        {
+            SceneManager.LoadScene("Main Game");
         }
     }
 
