@@ -11,11 +11,14 @@ public class HealthBar : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		localScale = transform.localScale;
-	}
+
+        localScale.x = 0;
+        transform.localScale = localScale;
+    }
 	
 	// Update is called once per frame
 	void Update () {
-		localScale.x = 2*Dog.GetComponent<Dog_Movement>().pet_bar();
+		localScale.x = 2 - 2*Dog.GetComponent<Dog_Movement>().pet_bar();
 		transform.localScale = localScale;
 	}
 }

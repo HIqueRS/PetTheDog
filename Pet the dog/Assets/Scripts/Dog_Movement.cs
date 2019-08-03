@@ -15,7 +15,7 @@ public class Dog_Movement : MonoBehaviour
     public float speed_m;
     public float speed_g;
 
-    private int Size_Tipe;
+    public int Size_Tipe;
     private int Max_dog;
     public Sprite[] sprite_dog_p;
     public Sprite[] sprite_dog_m;
@@ -33,7 +33,7 @@ public class Dog_Movement : MonoBehaviour
     {
        
 
-        Size_Tipe = Random.Range(0, 3);
+        //Size_Tipe = Random.Range(0, 3);
 
         player = GameObject.Find("Player");
 
@@ -86,7 +86,7 @@ public class Dog_Movement : MonoBehaviour
         {
             Touch touch = Input.GetTouch(0);
 
-            if (touch.deltaPosition.x > Min_Mov.x)
+            if (touch.deltaPosition.x > Min_Mov.x || touch.deltaPosition.y > Min_Mov.y)
             {
                 RaycastHit2D hitInfo = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position), Vector2.zero);
                 // RaycastHit2D can be either true or null, but has an implicit conversion to bool, so we can use it like this
