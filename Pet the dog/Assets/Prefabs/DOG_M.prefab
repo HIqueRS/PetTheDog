@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4283395992215756806}
   - component: {fileID: 4283395992215756805}
   m_Layer: 0
-  m_Name: DOG01
+  m_Name: DOG_M
   m_TagString: Dog
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1bfbd292a4e115746b03d502b727696c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bf52a09d683550a468120b206af0ea1d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,23 +97,13 @@ MonoBehaviour:
   Objective: {fileID: 0}
   player: {fileID: 0}
   Peting_bar: {fileID: 0}
-  speed_p: 3
-  speed_m: 2
-  speed_g: 1
-  sprite_dog_p:
-  - {fileID: 21300000, guid: 1e633b11d35f56149855e366b726eb17, type: 3}
-  - {fileID: 21300000, guid: 1bfbd292a4e115746b03d502b727696c, type: 3}
-  sprite_dog_m:
+  speed: 2
+  Size_Tipe: 1
+  sprites_dog:
   - {fileID: 21300000, guid: bf52a09d683550a468120b206af0ea1d, type: 3}
   - {fileID: 21300000, guid: 1e56685b8f0f1314ab63a6efdc6aab32, type: 3}
-  sprite_dog_g:
-  - {fileID: 21300000, guid: e8342a355d6b8fe4bb202c839400f75a, type: 3}
-  - {fileID: 21300000, guid: acb8bc027cb79744d8f0125ece249326, type: 3}
-  pet_var: 0
+  pet_var: 15
   Min_Mov: {x: 7, y: 7}
-  pet_var_p: 5
-  pet_var_m: 15
-  pet_var_g: 20
 --- !u!61 &4283395992215756805
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -127,18 +117,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.103957176, y: 0.33768034}
+  m_Offset: {x: -0.14434385, y: 0.4507631}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.78, y: 2.99}
+    oldSize: {x: 2.67, y: 4.49}
     newSize: {x: 3.56, y: 5.98}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.062313, y: 2.1921086}
+  m_Size: {x: 2.2723234, y: 2.7736742}
   m_EdgeRadius: 0
 --- !u!1 &8949533961442774606
 GameObject:
@@ -166,7 +156,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8949533961442774606}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 1.69, z: 0}
+  m_LocalPosition: {x: -1.06, y: 2.24, z: 0}
   m_LocalScale: {x: 2, y: 0.3, z: 1}
   m_Children: []
   m_Father: {fileID: 4283395992215756804}
