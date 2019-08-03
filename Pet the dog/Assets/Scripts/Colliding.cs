@@ -9,6 +9,7 @@ public class Colliding : MonoBehaviour
     public Slider slider;
 
     private bool Dog_came = false;
+    private int Dog_count = 0;
    
 
     // Start is called before the first frame update
@@ -22,7 +23,7 @@ public class Colliding : MonoBehaviour
     {
        if (Dog_came)
         {
-            slider.value -= 10 * Time.deltaTime;
+            slider.value -= 10 * Time.deltaTime * Dog_count;
         }
     }
 
@@ -33,6 +34,7 @@ public class Colliding : MonoBehaviour
         if (collision.gameObject.tag == "Dog")
         {
             Dog_came = true;
+            Dog_count += 1;
         }
     }
 
