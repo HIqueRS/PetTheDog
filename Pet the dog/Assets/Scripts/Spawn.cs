@@ -21,6 +21,13 @@ public class Spawn : MonoBehaviour
     void Start()
     {
         Time_to_spawn = Random.Range(Time_to_spawn_Min, Time_to_spawn_Max);
+
+        Dog_tipe = Random.Range(0, dog.Length);
+        dog[Dog_tipe].GetComponent<Dog_Behaviour>().Objective = Final_Position;
+        dog[Dog_tipe].GetComponent<Dog_Behaviour>().Size_Tipe = Dog_tipe;
+        dog[Dog_tipe].GetComponent<Dog_Behaviour>().config = config;
+        dog[Dog_tipe].GetComponent<Dog_Behaviour>().pet_position = pet_position;
+        Instantiate(dog[Dog_tipe], gameObject.transform.position, Quaternion.identity);
     }
 
     // Update is called once per frame

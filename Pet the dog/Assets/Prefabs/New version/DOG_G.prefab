@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4720567023830250259}
   - component: {fileID: 4720567023830250258}
-  - component: {fileID: 530678492903754599}
+  - component: {fileID: 3093208800461977999}
   m_Layer: 0
   m_Name: Petting bar
   m_TagString: Untagged
@@ -25,12 +25,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4720567023830250269}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.66, y: 8.3, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -9, y: 22, z: -1}
   m_LocalScale: {x: 10, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4720567025389501610}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4720567023830250258
 SpriteRenderer:
@@ -70,7 +70,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: eab943dba0e06794cae697e5d3c7dbb5, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.9372549, a: 1}
+  m_Color: {r: 0.99215686, g: 0.87058824, b: 0.65882355, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &530678492903754599
+--- !u!114 &3093208800461977999
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,6 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434822d5d2978244e8e211436d6c5c5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  barra: 0
   Dog: {fileID: 4720567025389501622}
 --- !u!1 &4720567025389501622
 GameObject:
@@ -123,6 +124,7 @@ Transform:
   m_LocalPosition: {x: -2.409, y: 1.325, z: -2.8697612}
   m_LocalScale: {x: 0.20467193, y: 0.20467193, z: 0.20467193}
   m_Children:
+  - {fileID: 812209911900685665}
   - {fileID: 4720567023830250259}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -164,7 +166,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 73e6f3e12169d6d4e99e14f422a7b14a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0118c58cc1772c44086236975bf88d2a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -192,7 +194,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 10.64, y: 14.55}
+    oldSize: {x: 33.25, y: 45.46875}
     newSize: {x: 9.96, y: 16.17}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -246,5 +248,100 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b4e54fe52c6a4f74caf528635c6f88ad, type: 3}
   - {fileID: 21300000, guid: f880049b01983814f85d95aed23663e3, type: 3}
   pet_var: 20
+  in_pet: 0
   Coeficiente_Carinho: 1
   anim_vel: 0.5
+--- !u!1 &7278070291363466779
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 812209911900685665}
+  - component: {fileID: 8337415347773161646}
+  - component: {fileID: 7659724262588765941}
+  m_Layer: 0
+  m_Name: barra-de-vida
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &812209911900685665
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7278070291363466779}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4, y: 21.47, z: -3}
+  m_LocalScale: {x: 1.5059743, y: 1.6181407, z: 1.9613825}
+  m_Children: []
+  m_Father: {fileID: 4720567025389501610}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &8337415347773161646
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7278070291363466779}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: ef9f375d4a3392d4ba6860805e7e225d, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 7.05, y: 0.99}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!114 &7659724262588765941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7278070291363466779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 434822d5d2978244e8e211436d6c5c5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barra: 1
+  Dog: {fileID: 4720567025389501622}
