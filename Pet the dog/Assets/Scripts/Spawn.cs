@@ -7,6 +7,8 @@ public class Spawn : MonoBehaviour
 
     public GameObject[] dog;
     public GameObject[] Final_Position;
+    public GameObject[] pet_position;
+    public GameObject config;
     private int Dog_tipe;
     
 
@@ -25,13 +27,15 @@ public class Spawn : MonoBehaviour
     void Update()
     {
         Timer += Time.deltaTime;
-        Dog_tipe = Random.Range(0, 3);
+        Dog_tipe = Random.Range(0, dog.Length);
 
 
         if (Timer > Time_to_spawn)
         {
-            dog[Dog_tipe].GetComponent<Dog_Movement>().Objective = Final_Position[Random.Range(0, Final_Position.Length)];
-            dog[Dog_tipe].GetComponent<Dog_Movement>().Size_Tipe = Dog_tipe;
+            dog[Dog_tipe].GetComponent<Dog_Behaviour>().Objective = Final_Position;
+            dog[Dog_tipe].GetComponent<Dog_Behaviour>().Size_Tipe = Dog_tipe;
+            dog[Dog_tipe].GetComponent<Dog_Behaviour>().config = config;
+            dog[Dog_tipe].GetComponent<Dog_Behaviour>().pet_position = pet_position;
             Instantiate(dog[Dog_tipe], gameObject.transform.position, Quaternion.identity);
             
             Timer = 0;
