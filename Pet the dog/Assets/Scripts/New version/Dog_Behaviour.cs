@@ -38,6 +38,8 @@ public class Dog_Behaviour : MonoBehaviour
 
     private GameObject gerente;
 
+    private float bonus_time = 5;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -80,6 +82,7 @@ public class Dog_Behaviour : MonoBehaviour
         float step = speed * Time.deltaTime;
         Timer += Time.fixedDeltaTime;
         lock_timer += Time.fixedDeltaTime;
+        bonus_time += Time.fixedDeltaTime;
 
         if (Current_target < 3)
         {
@@ -129,6 +132,12 @@ public class Dog_Behaviour : MonoBehaviour
             }
         }
 
+        if (pet_var > max_pet)
+        {
+            pet_var = max_pet;
+        }
+
+
         if (gameObject.transform.localScale.x < target_scale.x)
         {
             gameObject.transform.localScale += new Vector3(0.03f, 0.03f, 0f) * Time.deltaTime;
@@ -169,6 +178,8 @@ public class Dog_Behaviour : MonoBehaviour
             {
                 Touch touch = Input.GetTouch(0);
 
+                bonus_time = 0;
+
                 if (pet_bar() < 0.5)
                 {
                     gameObject.GetComponent<SpriteRenderer>().sprite = sprites_pet[0];
@@ -186,23 +197,24 @@ public class Dog_Behaviour : MonoBehaviour
                 {
                     pet_var += Time.deltaTime * Coeficiente_Carinho + (touch.deltaPosition.x * Time.deltaTime) / 4;
                     
-                    gerente.GetComponent<Score>().set_score((Time.deltaTime * Coeficiente_Carinho + (touch.deltaPosition.x * Time.deltaTime) / 4));
+                    gerente.GetComponent<Score>().set_score( 10*(Time.deltaTime * Coeficiente_Carinho + (touch.deltaPosition.x * Time.deltaTime) / 4));
                 }
                 else
                 {
                     pet_var += Time.deltaTime * Coeficiente_Carinho;
-                    gerente.GetComponent<Score>().set_score((Time.deltaTime * Coeficiente_Carinho));
+                    gerente.GetComponent<Score>().set_score( 10*(Time.deltaTime * Coeficiente_Carinho));
                 }
                     
 
-                if (pet_var > max_pet)
-                {
-                    pet_var = max_pet;
-                }
+                
             }
             else
             {
-                pet_var -= Time.deltaTime;
+                if (bonus_time > 5)
+                {
+                    pet_var -= Time.deltaTime;
+                }
+               
             }
                 
 
@@ -224,7 +236,10 @@ public class Dog_Behaviour : MonoBehaviour
 
         if (Start_Bar && !in_pet)
         {
-            pet_var -= Time.deltaTime;
+            if (bonus_time > 5)
+            {
+                pet_var -= Time.deltaTime;
+            }
         }
 
         if (Input.touchCount > 0)
@@ -257,7 +272,7 @@ public class Dog_Behaviour : MonoBehaviour
         }
         else
         {
-            if (lock_timer > 1)
+            if (lock_timer > 1.5f)
             {
                 config.GetComponent<Config>().can_you_pet = true;
                 in_pet = false;
@@ -278,6 +293,11 @@ public class Dog_Behaviour : MonoBehaviour
 
     public float pet_bar()
     {
+        if (pet_var > max_pet)
+        {
+            pet_var = max_pet;
+        }
+
         return (pet_var * 100 / max_pet) / 100;
     }
 }

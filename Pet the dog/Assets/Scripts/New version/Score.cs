@@ -6,15 +6,15 @@ using UnityEngine.UI;
 public class Score : MonoBehaviour
 {
 
-    private float score = 0;
-    public GameObject text;
+    public float score = 0;
+    private GameObject text;
 
     
 
     // Start is called before the first frame update
     void Start()
     {
-        
+       text = GameObject.Find("Text");
     }
 
     // Update is called once per frame
@@ -28,5 +28,7 @@ public class Score : MonoBehaviour
         score += scr;
         int corte = (int)score;
         text.GetComponent<Text>().text = "Score: " + corte.ToString();
+
+        DontDestroyOnLoad(transform.gameObject);
     }
 }
