@@ -212,7 +212,7 @@ public class Dog_Behaviour : MonoBehaviour
             {
                 if (bonus_time > 5)
                 {
-                    pet_var -= Time.deltaTime;
+                   // pet_var -= Time.deltaTime;
                 }
                
             }
@@ -238,7 +238,7 @@ public class Dog_Behaviour : MonoBehaviour
         {
             if (bonus_time > 5)
             {
-                pet_var -= Time.deltaTime;
+                //pet_var -= Time.deltaTime;
             }
         }
 
@@ -285,7 +285,7 @@ public class Dog_Behaviour : MonoBehaviour
         if (pet_var < 0)
         {
             //game over
-            SceneManager.LoadScene("GameOver");
+           // SceneManager.LoadScene("GameOver");
             //Destroy(gameObject);
         }
 
