@@ -345,3 +345,4 @@ MonoBehaviour:
   in_pet: 0
   Coeficiente_Carinho: 1
   anim_vel: 0.4
+  Landscape: 1

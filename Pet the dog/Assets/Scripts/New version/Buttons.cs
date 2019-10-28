@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Buttons : MonoBehaviour
 {
+
+    public bool landscape;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,12 +21,18 @@ public class Buttons : MonoBehaviour
 
     public void Jogar()
     {
-        SceneManager.LoadScene("New game");
+        if(!landscape)
+            SceneManager.LoadScene("New game");
+        else
+            SceneManager.LoadScene("New game 1");
     }
 
     public void Back_To_Menu()
     {
-        SceneManager.LoadScene("TelaInicial");
+        if (!landscape)
+            SceneManager.LoadScene("TelaInicial");
+        else
+            SceneManager.LoadScene("TelaInicial 1");
     }
 
     public void Pet_Shop()

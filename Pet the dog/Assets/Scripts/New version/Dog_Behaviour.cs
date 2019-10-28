@@ -40,6 +40,8 @@ public class Dog_Behaviour : MonoBehaviour
 
     private float bonus_time = 5;
 
+    public bool Landscape;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -285,7 +287,10 @@ public class Dog_Behaviour : MonoBehaviour
         if (pet_var < 0)
         {
             //game over
-            SceneManager.LoadScene("GameOver");
+            if(!Landscape)
+                SceneManager.LoadScene("GameOver");
+            else
+                SceneManager.LoadScene("GameOver 1");
             //Destroy(gameObject);
         }
 

@@ -5,22 +5,28 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Main game.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/Scenes/Landscape/TelaInicial 1.unity
+    guid: f5a9e4fbd557c8346a30d41754c5405e
+  - enabled: 1
+    path: Assets/Scenes/Landscape/New game 1.unity
+    guid: d5c58c14be50bc148ba2bb8b32ddb12d
+  - enabled: 1
+    path: Assets/Scenes/Landscape/GameOver 1.unity
+    guid: f4c48ea7125ce074ab84bae02283a727
+  - enabled: 0
     path: Assets/Scenes/TelaInicial.unity
     guid: a7638e32bd4a14349879ec111f80ae9d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/New game.unity
     guid: 924486e6f5536f04797e1c2f91874f40
+  - enabled: 0
+    path: Assets/Scenes/GameOver.unity
+    guid: b6bd09350f7d9f5438f8524e55f1627e
   - enabled: 1
     path: Assets/Scenes/Pet Store.unity
     guid: 3f0b6791e071a834a962a83edbc97067
   - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: 980b3c374a9696b4abf690a260ce1386
-  - enabled: 1
-    path: Assets/Scenes/GameOver.unity
-    guid: b6bd09350f7d9f5438f8524e55f1627e
   m_configObjects: {}

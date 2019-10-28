@@ -251,6 +251,7 @@ MonoBehaviour:
   in_pet: 0
   Coeficiente_Carinho: 1
   anim_vel: 0.5
+  Landscape: 1
 --- !u!1 &7278070291363466779
 GameObject:
   m_ObjectHideFlags: 0
