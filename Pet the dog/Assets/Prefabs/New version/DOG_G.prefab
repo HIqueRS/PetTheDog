@@ -233,6 +233,13 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  Exit_Position:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   Peting_bar: {fileID: 4720567023830250269}
   config: {fileID: 0}
   speed: 1
@@ -252,6 +259,11 @@ MonoBehaviour:
   Coeficiente_Carinho: 1
   anim_vel: 0.5
   Landscape: 1
+  DogSaiu:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &7278070291363466779
 GameObject:
   m_ObjectHideFlags: 0

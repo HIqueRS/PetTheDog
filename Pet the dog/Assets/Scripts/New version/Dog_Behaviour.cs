@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class Dog_Behaviour : MonoBehaviour
 {
@@ -43,6 +44,16 @@ public class Dog_Behaviour : MonoBehaviour
 
     public bool Landscape;
 
+    float step;
+
+    [Header("Exiting var")]
+    float Time_to_Exit;
+    float Timing;
+    bool Exit = false;
+    //public UnityEvent DogSaiu;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -82,7 +93,7 @@ public class Dog_Behaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float step = speed * Time.deltaTime;
+        step = speed * Time.deltaTime;
         Timer += Time.fixedDeltaTime;
         lock_timer += Time.fixedDeltaTime;
         bonus_time += Time.fixedDeltaTime;
@@ -170,118 +181,131 @@ public class Dog_Behaviour : MonoBehaviour
             }
         }
        
-
-        if  (!in_pet)
+        if(!Exit)
         {
-            transform.position = Vector3.MoveTowards(transform.position, Objective[Current_target].transform.position, step);
-        }
-        else
-        {
-            if(Input.touchCount > 0)
+            if (!in_pet)
             {
-                Touch touch = Input.GetTouch(0);
-
-                bonus_time = 0;
-
-                if (pet_bar() < 0.5)
-                {
-                    gameObject.GetComponent<SpriteRenderer>().sprite = sprites_pet[0];
-                }
-                else if (pet_bar() < 0.7)
-                {
-                    gameObject.GetComponent<SpriteRenderer>().sprite = sprites_pet[1];
-                }
-                else
-                {
-                    gameObject.GetComponent<SpriteRenderer>().sprite = sprites_pet[2];
-                }
-
-                if (touch.deltaPosition.x > 0)
-                {
-                    pet_var += Time.deltaTime * Coeficiente_Carinho + (touch.deltaPosition.x * Time.deltaTime) / 4;
-                    
-                    gerente.GetComponent<Score>().set_score( 10*(Time.deltaTime * Coeficiente_Carinho + (touch.deltaPosition.x * Time.deltaTime) / 4));
-                }
-                else
-                {
-                    pet_var += Time.deltaTime * Coeficiente_Carinho;
-                    gerente.GetComponent<Score>().set_score( 10*(Time.deltaTime * Coeficiente_Carinho));
-                }
-                    
-
-                
+                transform.position = Vector3.MoveTowards(transform.position, Objective[Current_target].transform.position, step);
             }
             else
+            {
+                if (Input.touchCount > 0)
+                {
+                    Touch touch = Input.GetTouch(0);
+
+                    bonus_time = 0;
+
+                    if (pet_bar() < 0.5)
+                    {
+                        gameObject.GetComponent<SpriteRenderer>().sprite = sprites_pet[0];
+                    }
+                    else if (pet_bar() < 0.7)
+                    {
+                        gameObject.GetComponent<SpriteRenderer>().sprite = sprites_pet[1];
+                    }
+                    else
+                    {
+                        gameObject.GetComponent<SpriteRenderer>().sprite = sprites_pet[2];
+                    }
+
+                    if (touch.deltaPosition.x > 0)
+                    {
+                        pet_var += Time.deltaTime * Coeficiente_Carinho + (touch.deltaPosition.x * Time.deltaTime) / 4;
+
+                        gerente.GetComponent<Score>().set_score(10 * (Time.deltaTime * Coeficiente_Carinho + (touch.deltaPosition.x * Time.deltaTime) / 4));
+                    }
+                    else
+                    {
+                        pet_var += Time.deltaTime * Coeficiente_Carinho;
+                        gerente.GetComponent<Score>().set_score(10 * (Time.deltaTime * Coeficiente_Carinho));
+                    }
+
+
+
+                }
+                else
+                {
+                    if (bonus_time > 5)
+                    {
+                        pet_var -= Time.deltaTime;
+                    }
+
+                }
+
+
+            }
+        }
+
+        
+
+        if (!Exit)
+        {
+            if (Vector3.Distance(transform.position, Objective[Current_target].transform.position) < 0.5)
+            {
+                //Debug.Log("Start the bar");
+                //Debug.Log("Randomize another objective");           
+
+                Current_target = Random.Range(0, Objective.Length - 3);
+
+
+                Start_Bar = true;
+            }
+        }       
+
+        if(!Exit)
+        {
+            if (Start_Bar && !in_pet)
             {
                 if (bonus_time > 5)
                 {
                     pet_var -= Time.deltaTime;
                 }
-               
             }
-                
-
         }
        
 
-        if (Vector3.Distance(transform.position,Objective[Current_target].transform.position) < 0.5)
+        if (!Exit)
         {
-            Debug.Log("Start the bar");
-            Debug.Log("Randomize another objective");           
-
-            Current_target = Random.Range(0, Objective.Length - 3);
-            
-
-            Start_Bar = true;
-        }
-
-        if (Start_Bar && !in_pet)
-        {
-            if (bonus_time > 5)
+            if (Input.touchCount > 0)
             {
-                pet_var -= Time.deltaTime;
-            }
-        }
-
-        if (Input.touchCount > 0)
-        {
-            for (int i = 0; i < Input.touchCount; i++)
-            {
-                Touch touch = Input.GetTouch(i);
-
-                RaycastHit2D hitInfo = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position), Vector2.zero);
-
-                if (hitInfo)
+                for (int i = 0; i < Input.touchCount; i++)
                 {
-                    if (gameObject == hitInfo.transform.gameObject)
-                    {
-                        //ir pra frente
-                        Debug.Log("Vai pra frente");
-                        if (config.GetComponent<Config>().can_you_pet)
-                        {
-                            transform.position = Objective[Random.Range(9, Objective.Length)].transform.position;
-                            config.GetComponent<Config>().can_you_pet = false;
-                            in_pet = true;
-                            lock_dog = true;
-                            lock_timer = 0;
-                        }
+                    Touch touch = Input.GetTouch(i);
 
+                    RaycastHit2D hitInfo = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position), Vector2.zero);
+
+                    if (hitInfo)
+                    {
+                        if (gameObject == hitInfo.transform.gameObject)
+                        {
+                            //ir pra frente
+                            Debug.Log("Vai pra frente");
+                            if (config.GetComponent<Config>().can_you_pet)
+                            {
+                                transform.position = Objective[Random.Range(9, Objective.Length)].transform.position;
+                                config.GetComponent<Config>().can_you_pet = false;
+                                in_pet = true;
+                                lock_dog = true;
+                                lock_timer = 0;
+                            }
+
+                        }
                     }
                 }
+
             }
-            
-        }
-        else
-        {
-            if (lock_timer > 1.5f)
+            else
             {
-                config.GetComponent<Config>().can_you_pet = true;
-                in_pet = false;
-                lock_dog = false;
+                if (lock_timer > 1.5f)
+                {
+                    config.GetComponent<Config>().can_you_pet = true;
+                    in_pet = false;
+                    lock_dog = false;
+                }
+
             }
-           
-           // gameObject.GetComponent<SpriteRenderer>().sprite = sprites_walk[0];
         }
+        
 
         if (pet_var < 0)
         {
@@ -289,16 +313,36 @@ public class Dog_Behaviour : MonoBehaviour
             if(!Landscape)
             {
                 //SceneManager.LoadScene("GameOver");
-
+                Exiting();
             }            
             else
             {
                 //SceneManager.LoadScene("GameOver 1");
+                Exiting();
             }
                
             //Destroy(gameObject);
         }
 
+    }
+
+    void Exiting()
+    {
+        if(!Exit)
+        {
+            Current_target = Random.Range(0, Exit_Position.Length);
+            Exit = true;
+        }
+        transform.position = Vector3.MoveTowards(transform.position, Exit_Position[Current_target].transform.position, step);
+
+        if (Vector3.Distance(transform.position, Exit_Position[Current_target].transform.position) < 0.5)
+        {
+
+            GameObject.Find("SpawnManager").GetComponent<SpawnManager>().MaxDogo--;
+            Destroy(gameObject);
+           
+            
+        }
     }
 
     public float pet_bar()

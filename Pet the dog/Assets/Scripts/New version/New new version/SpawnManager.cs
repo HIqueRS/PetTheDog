@@ -14,7 +14,7 @@ public class SpawnManager : MonoBehaviour
     private float Time_to_spawn;
 
     private int SpawnDecision;
-    private int MaxDogo;
+    public int MaxDogo;
 
     // Start is called before the first frame update
     void Start()
