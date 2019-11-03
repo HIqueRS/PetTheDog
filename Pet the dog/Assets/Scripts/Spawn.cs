@@ -8,6 +8,7 @@ public class Spawn : MonoBehaviour
     public GameObject[] dog;
     public GameObject[] Final_Position;
     public GameObject[] pet_position;
+    public GameObject[] Exit_Position;
     public GameObject config;
     private int Dog_tipe;
     
@@ -22,12 +23,7 @@ public class Spawn : MonoBehaviour
     {
         Time_to_spawn = Random.Range(Time_to_spawn_Min, Time_to_spawn_Max);
 
-        Dog_tipe = Random.Range(0, dog.Length);
-        dog[Dog_tipe].GetComponent<Dog_Behaviour>().Objective = Final_Position;
-        dog[Dog_tipe].GetComponent<Dog_Behaviour>().Size_Tipe = Dog_tipe;
-        dog[Dog_tipe].GetComponent<Dog_Behaviour>().config = config;
-        dog[Dog_tipe].GetComponent<Dog_Behaviour>().pet_position = pet_position;
-        Instantiate(dog[Dog_tipe], gameObject.transform.position, Quaternion.identity);
+       
     }
 
     // Update is called once per frame
@@ -60,6 +56,7 @@ public class Spawn : MonoBehaviour
         dog[Dog_tipe].GetComponent<Dog_Behaviour>().Size_Tipe = Dog_tipe;
         dog[Dog_tipe].GetComponent<Dog_Behaviour>().config = config;
         dog[Dog_tipe].GetComponent<Dog_Behaviour>().pet_position = pet_position;
+        dog[Dog_tipe].GetComponent<Dog_Behaviour>().Exit_Position = Exit_Position;
         Instantiate(dog[Dog_tipe], gameObject.transform.position, Quaternion.identity);
     }
 }

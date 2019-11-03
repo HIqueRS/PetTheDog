@@ -8,6 +8,7 @@ public class Dog_Behaviour : MonoBehaviour
     public int Current_target;
     public GameObject[] Objective;
     public GameObject[] pet_position;
+    public GameObject[] Exit_Position;
     public GameObject Peting_bar;
     public GameObject config;
 
@@ -229,9 +230,7 @@ public class Dog_Behaviour : MonoBehaviour
             Debug.Log("Randomize another objective");           
 
             Current_target = Random.Range(0, Objective.Length - 3);
-            //start the bar
-            //and start movement
-            //randomize another objective.position
+            
 
             Start_Bar = true;
         }
@@ -288,9 +287,15 @@ public class Dog_Behaviour : MonoBehaviour
         {
             //game over
             if(!Landscape)
-                SceneManager.LoadScene("GameOver");
+            {
+                //SceneManager.LoadScene("GameOver");
+
+            }            
             else
-                SceneManager.LoadScene("GameOver 1");
+            {
+                //SceneManager.LoadScene("GameOver 1");
+            }
+               
             //Destroy(gameObject);
         }
 
