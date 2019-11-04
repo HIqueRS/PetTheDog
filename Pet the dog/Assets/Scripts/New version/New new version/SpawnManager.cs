@@ -14,6 +14,7 @@ public class SpawnManager : MonoBehaviour
     private float Time_to_spawn;
 
     private int SpawnDecision;
+    private int NDogo;
     public int MaxDogo;
 
     // Start is called before the first frame update
@@ -22,7 +23,7 @@ public class SpawnManager : MonoBehaviour
         Time_to_spawn = Random.Range(Time_to_spawn_Min, Time_to_spawn_Max);
         spawn1.Invoke();
         spawn2.Invoke();
-        MaxDogo = 2;
+        NDogo = 2;
     }
 
     // Update is called once per frame
@@ -32,24 +33,24 @@ public class SpawnManager : MonoBehaviour
 
         if (Timer > Time_to_spawn)
         {
-            if(MaxDogo < 10)
+            if(NDogo < MaxDogo)
             {
                 SpawnDecision = Random.Range(0, 3);
                 if (SpawnDecision == 0)
                 {
                     spawn1.Invoke();
-                    MaxDogo++;
+                    NDogo++;
                 }
                 else if (SpawnDecision == 1)
                 {
                     spawn2.Invoke();
-                    MaxDogo++;
+                    NDogo++;
                 }
                 else
                 {
                     spawn1.Invoke();
                     spawn2.Invoke();
-                    MaxDogo += 2;
+                    NDogo += 2;
                 }
                 Timer = 0;
                 Time_to_spawn = Random.Range(Time_to_spawn_Min, Time_to_spawn_Max);

@@ -47,10 +47,12 @@ public class Dog_Behaviour : MonoBehaviour
     float step;
 
     [Header("Exiting var")]
-    float Time_to_Exit;
-    float Timing;
+    public float Time_to_Exit;
+    float Timing =0;
     bool Exit = false;
-    //public UnityEvent DogSaiu;
+
+    public UnityEvent DogSaiu;
+    //private GameObject Gerente;
 
 
 
@@ -88,6 +90,9 @@ public class Dog_Behaviour : MonoBehaviour
         max_pet = pet_var;
 
         Current_target = Random.Range(0, Objective.Length - 3);
+
+        DogSaiu.AddListener(gerente.GetComponent<Timerzito>().SubTime);
+        Start_Bar = true;
     }
 
     // Update is called once per frame
@@ -313,16 +318,20 @@ public class Dog_Behaviour : MonoBehaviour
             if(!Landscape)
             {
                 //SceneManager.LoadScene("GameOver");
+               
                 Exiting();
             }            
             else
             {
                 //SceneManager.LoadScene("GameOver 1");
                 Exiting();
+               
             }
                
             //Destroy(gameObject);
         }
+
+        LifeSpan();
 
     }
 
@@ -339,6 +348,7 @@ public class Dog_Behaviour : MonoBehaviour
         {
 
             GameObject.Find("SpawnManager").GetComponent<SpawnManager>().MaxDogo--;
+            DogSaiu.Invoke();
             Destroy(gameObject);
            
             
@@ -353,5 +363,14 @@ public class Dog_Behaviour : MonoBehaviour
         }
 
         return (pet_var * 100 / max_pet) / 100;
+    }
+
+    public void LifeSpan()
+    {
+        Timing += Time.deltaTime;
+        if(Timing >= Time_to_Exit)
+        {
+            Exiting();
+        }
     }
 }
