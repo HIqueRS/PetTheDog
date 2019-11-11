@@ -31,6 +31,7 @@ public class Timerzito : MonoBehaviour
         
         if(maxtime <=0)
         {
+            maxtime = 0;
             SceneManager.LoadScene("GameOver 1");
         }
     }

@@ -331,7 +331,11 @@ public class Dog_Behaviour : MonoBehaviour
             //Destroy(gameObject);
         }
 
-        LifeSpan();
+        if(!in_pet)
+        {
+            LifeSpan();
+        }
+       
 
     }
 

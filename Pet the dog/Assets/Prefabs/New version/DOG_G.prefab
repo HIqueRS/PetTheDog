@@ -259,7 +259,7 @@ MonoBehaviour:
   Coeficiente_Carinho: 1
   anim_vel: 0.5
   Landscape: 1
-  Time_to_Exit: 10
+  Time_to_Exit: 20
   DogSaiu:
     m_PersistentCalls:
       m_Calls: []
