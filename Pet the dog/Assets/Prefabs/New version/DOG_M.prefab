@@ -147,6 +147,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   Peting_bar: {fileID: 864312850653384891}
+  Bar: {fileID: 7043482208805723305}
   config: {fileID: 0}
   speed: 2
   Size_Tipe: 1

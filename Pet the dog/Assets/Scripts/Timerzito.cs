@@ -10,16 +10,18 @@ public class Timerzito : MonoBehaviour
     private int time;
     private int minute;
     private int second;
+    private bool bole;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        bole = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(bole)
         maxtime-= Time.deltaTime;
 
         minute = Mathf.FloorToInt(maxtime / 60);
@@ -32,6 +34,7 @@ public class Timerzito : MonoBehaviour
         if(maxtime <=0)
         {
             maxtime = 0;
+            bole = false;
             SceneManager.LoadScene("GameOver 1");
         }
     }

@@ -11,7 +11,10 @@ public class Dog_Behaviour : MonoBehaviour
     public GameObject[] pet_position;
     public GameObject[] Exit_Position;
     public GameObject Peting_bar;
+    public GameObject Bar;
     public GameObject config;
+
+    public GameObject ps;
 
     
     public float speed;
@@ -98,6 +101,8 @@ public class Dog_Behaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+       
         step = speed * Time.deltaTime;
         Timer += Time.fixedDeltaTime;
         lock_timer += Time.fixedDeltaTime;
@@ -154,8 +159,10 @@ public class Dog_Behaviour : MonoBehaviour
         if (pet_var > max_pet)
         {
             pet_var = max_pet;
+            
         }
-
+        
+        
 
         if (gameObject.transform.localScale.x < target_scale.x)
         {
@@ -200,7 +207,7 @@ public class Dog_Behaviour : MonoBehaviour
 
                     bonus_time = 0;
 
-                    if (pet_bar() < 0.5)
+                    if (pet_bar() < 0.5)//tem q mudar
                     {
                         gameObject.GetComponent<SpriteRenderer>().sprite = sprites_pet[0];
                     }
@@ -216,13 +223,17 @@ public class Dog_Behaviour : MonoBehaviour
                     if (touch.deltaPosition.x > 0)
                     {
                         pet_var += Time.deltaTime * Coeficiente_Carinho + (touch.deltaPosition.x * Time.deltaTime) / 4;
+                        ps.SetActive(true);
 
-                        gerente.GetComponent<Score>().set_score(10 * (Time.deltaTime * Coeficiente_Carinho + (touch.deltaPosition.x * Time.deltaTime) / 4));
+                        if (pet_var <= max_pet)
+                            gerente.GetComponent<Score>().set_score(10 * (Time.deltaTime * Coeficiente_Carinho + (touch.deltaPosition.x * Time.deltaTime) / 4));
                     }
                     else
                     {
                         pet_var += Time.deltaTime * Coeficiente_Carinho;
-                        gerente.GetComponent<Score>().set_score(10 * (Time.deltaTime * Coeficiente_Carinho));
+                        ps.SetActive(true);
+                        if (pet_var <= max_pet)
+                            gerente.GetComponent<Score>().set_score(10 * (Time.deltaTime * Coeficiente_Carinho));
                     }
 
 
@@ -234,7 +245,7 @@ public class Dog_Behaviour : MonoBehaviour
                     {
                         pet_var -= Time.deltaTime;
                     }
-
+                    ps.SetActive(false);
                 }
 
 
@@ -284,10 +295,11 @@ public class Dog_Behaviour : MonoBehaviour
                         if (gameObject == hitInfo.transform.gameObject)
                         {
                             //ir pra frente
-                            Debug.Log("Vai pra frente");
+                            //Debug.Log("Vai pra frente");
                             if (config.GetComponent<Config>().can_you_pet)
                             {
-                                transform.position = Objective[Random.Range(9, Objective.Length)].transform.position;
+                                int aux_b = Random.Range(9, Objective.Length);
+                                transform.position = new Vector3(Objective[aux_b].transform.position.x, Objective[aux_b].transform.position.y, -3);
                                 config.GetComponent<Config>().can_you_pet = false;
                                 in_pet = true;
                                 lock_dog = true;
@@ -344,6 +356,9 @@ public class Dog_Behaviour : MonoBehaviour
         if(!Exit)
         {
             Current_target = Random.Range(0, Exit_Position.Length);
+            Destroy(Peting_bar.gameObject);
+            Destroy(Bar.gameObject);
+            speed += 3;
             Exit = true;
         }
         transform.position = Vector3.MoveTowards(transform.position, Exit_Position[Current_target].transform.position, step);
@@ -353,8 +368,7 @@ public class Dog_Behaviour : MonoBehaviour
 
             GameObject.Find("SpawnManager").GetComponent<SpawnManager>().MaxDogo--;
             DogSaiu.Invoke();
-            Destroy(gameObject);
-           
+            Destroy(gameObject);         
             
         }
     }
