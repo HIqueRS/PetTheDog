@@ -7,18 +7,21 @@ public class Novo : MonoBehaviour
 {
     public GameObject text;
     private GameObject pet;
+    public Points point;
 
     // Start is called before the first frame update
     void Start()
     {
-        pet = GameObject.Find("Gerente");
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-        int v = (int)pet.GetComponent<Score>().score;
+        int v = (int)point.Point;
 
-        text.GetComponent<Text>().text = "Score: " + v.ToString();
+        text.GetComponent<TMPro.TextMeshProUGUI>().text = "Score: " + v.ToString();
+
+        //text.GetComponent<Text>().text = "Score: " + v.ToString();
     }
 }

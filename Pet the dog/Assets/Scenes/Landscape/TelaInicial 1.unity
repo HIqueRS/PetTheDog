@@ -669,6 +669,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   landscape: 1
+  point: {fileID: 11400000, guid: 33cbe3524ad30d6489af2f88d836571f, type: 2}
 --- !u!1 &823353723
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ public class Score : MonoBehaviour
 
     public float score = 0;
     private GameObject text;
-
+    public Points point;
     
 
     // Start is called before the first frame update
@@ -28,7 +28,7 @@ public class Score : MonoBehaviour
         score += scr;
         int corte = (int)score;
         text.GetComponent<Text>().text = "Score: " + corte.ToString();
-
-        DontDestroyOnLoad(transform.gameObject);
+        point.Point = score;
+        //DontDestroyOnLoad(transform.gameObject);
     }
 }

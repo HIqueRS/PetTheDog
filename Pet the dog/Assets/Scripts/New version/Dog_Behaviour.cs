@@ -55,8 +55,11 @@ public class Dog_Behaviour : MonoBehaviour
     bool Exit = false;
 
     public UnityEvent DogSaiu;
+    public UnityEvent DogSaiuFeliz;
     //private GameObject Gerente;
+    public int aux_b;
 
+    public GeU snap;
 
 
     // Start is called before the first frame update
@@ -95,6 +98,7 @@ public class Dog_Behaviour : MonoBehaviour
         Current_target = Random.Range(0, Objective.Length - 3);
 
         DogSaiu.AddListener(gerente.GetComponent<Timerzito>().SubTime);
+        DogSaiuFeliz.AddListener(gerente.GetComponent<Timerzito>().AddTime);
         Start_Bar = true;
     }
 
@@ -187,7 +191,7 @@ public class Dog_Behaviour : MonoBehaviour
                 }
                 pot = !pot;
 
-                Debug.Log(gameObject.name);
+                //Debug.Log(gameObject.name);
 
                 Timer = 0;
             }
@@ -197,6 +201,7 @@ public class Dog_Behaviour : MonoBehaviour
         {
             if (!in_pet)
             {
+                transform.position = new Vector3(transform.position.x, transform.position.y, 0);
                 transform.position = Vector3.MoveTowards(transform.position, Objective[Current_target].transform.position, step);
             }
             else
@@ -220,18 +225,18 @@ public class Dog_Behaviour : MonoBehaviour
                         gameObject.GetComponent<SpriteRenderer>().sprite = sprites_pet[2];
                     }
 
-                    if (touch.deltaPosition.x > 0)
+                    if (touch.deltaPosition.x > 50)
                     {
                         pet_var += Time.deltaTime * Coeficiente_Carinho + (touch.deltaPosition.x * Time.deltaTime) / 4;
                         ps.SetActive(true);
 
-                        if (pet_var <= max_pet)
-                            gerente.GetComponent<Score>().set_score(10 * (Time.deltaTime * Coeficiente_Carinho + (touch.deltaPosition.x * Time.deltaTime) / 4));
+                        
+                        gerente.GetComponent<Score>().set_score(10 * (Time.deltaTime * Coeficiente_Carinho + (touch.deltaPosition.x * Time.deltaTime) / 4));
                     }
                     else
                     {
                         pet_var += Time.deltaTime * Coeficiente_Carinho;
-                        ps.SetActive(true);
+                       
                         if (pet_var <= max_pet)
                             gerente.GetComponent<Score>().set_score(10 * (Time.deltaTime * Coeficiente_Carinho));
                     }
@@ -283,41 +288,95 @@ public class Dog_Behaviour : MonoBehaviour
         if (!Exit)
         {
             if (Input.touchCount > 0)
-            {
-                for (int i = 0; i < Input.touchCount; i++)
-                {
-                    Touch touch = Input.GetTouch(i);
-
-                    RaycastHit2D hitInfo = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position), Vector2.zero);
-
-                    if (hitInfo)
-                    {
-                        if (gameObject == hitInfo.transform.gameObject)
+            {                
+                        for (int i = 0; i < Input.touchCount; i++)
                         {
-                            //ir pra frente
-                            //Debug.Log("Vai pra frente");
-                            if (config.GetComponent<Config>().can_you_pet)
-                            {
-                                int aux_b = Random.Range(9, Objective.Length);
-                                transform.position = new Vector3(Objective[aux_b].transform.position.x, Objective[aux_b].transform.position.y, -3);
-                                config.GetComponent<Config>().can_you_pet = false;
-                                in_pet = true;
-                                lock_dog = true;
-                                lock_timer = 0;
-                            }
+                            Touch touch = Input.GetTouch(i);
 
+                            RaycastHit2D hitInfo = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position), Vector2.zero);
+
+                            if (hitInfo)
+                            {
+                                if (gameObject == hitInfo.transform.gameObject)
+                                {
+                                    //ir pra frente
+                                    //Debug.Log("Vai pra frente");
+                                    if (config.GetComponent<Config>().can_you_pet)
+                                    {
+                                        if (!in_pet)
+                                        {
+                                            aux_b = Random.Range(9, Objective.Length);
+                                            if(aux_b == 9)
+                                            {
+                                                
+                                                    transform.position = new Vector3(Objective[aux_b].transform.position.x, Objective[aux_b].transform.position.y, -3);
+                                                    config.GetComponent<Config>().can_you_pet = false;
+                                                    in_pet = true;
+                                                    lock_dog = true;
+                                                    lock_timer = 0;
+                                                    Objective[aux_b].GetComponent<Bool>().tem = true;
+                                                    Debug.Log(Objective[aux_b].gameObject.name + Objective[aux_b].GetComponent<Bool>().tem);
+                                                    //snap.left = true;
+                                               
+                                            }
+                                            else if(aux_b == 10)
+                                            {
+                                                
+                                                    transform.position = new Vector3(Objective[aux_b].transform.position.x, Objective[aux_b].transform.position.y, -3);
+                                                    config.GetComponent<Config>().can_you_pet = false;
+                                                    in_pet = true;
+                                                    lock_dog = true;
+                                                    lock_timer = 0;
+                                                    Objective[aux_b].GetComponent<Bool>().tem = true;
+                                                    Debug.Log(Objective[aux_b].gameObject.name + Objective[aux_b].GetComponent<Bool>().tem);
+                                                    //snap.mid = true;
+                                               
+                                            }
+                                            else if (aux_b == 11)
+                                            {
+                                                
+                                                    transform.position = new Vector3(Objective[aux_b].transform.position.x, Objective[aux_b].transform.position.y, -3);
+                                                    config.GetComponent<Config>().can_you_pet = false;
+                                                    in_pet = true;
+                                                    lock_dog = true;
+                                                    lock_timer = 0;
+                                                    Objective[aux_b].GetComponent<Bool>().tem = true;
+                                                    Debug.Log(Objective[aux_b].gameObject.name + Objective[aux_b].GetComponent<Bool>().tem);
+                                                    //snap.right = true;
+                                               
+                                            }
+                                            //if (!Objective[aux_b].GetComponent<Bool>().tem)
+                                            //{
+                                            //    transform.position = new Vector3(Objective[aux_b].transform.position.x, Objective[aux_b].transform.position.y, -3);
+                                            //    config.GetComponent<Config>().can_you_pet = false;
+                                            //    in_pet = true;
+                                            //    lock_dog = true;
+                                            //    lock_timer = 0;
+                                            //    Objective[aux_b].GetComponent<Bool>().tem = true;
+                                            //    Debug.Log(Objective[aux_b].gameObject.name + Objective[aux_b].GetComponent<Bool>().tem);
+
+                                            //}
+                                        }
+                                   
+                                    }
+
+                                }
+                            }
                         }
-                    }
-                }
+                
+               
 
             }
             else
             {
+                
                 if (lock_timer > 1.5f)
                 {
                     config.GetComponent<Config>().can_you_pet = true;
                     in_pet = false;
                     lock_dog = false;
+                    
+                   
                 }
 
             }
@@ -349,6 +408,25 @@ public class Dog_Behaviour : MonoBehaviour
         }
        
 
+        if(!in_pet)
+        {
+            if(!lock_dog)
+            {
+                if(aux_b == 9)
+                {
+                    snap.left = false;
+                }
+                else if (aux_b == 10)
+                {
+                    snap.mid = false;
+                }
+                else if (aux_b == 11)
+                {
+                    snap.right = false;
+                }
+            }
+        }
+
     }
 
     void Exiting()
@@ -360,13 +438,17 @@ public class Dog_Behaviour : MonoBehaviour
             Destroy(Bar.gameObject);
             speed += 3;
             Exit = true;
+            
         }
         transform.position = Vector3.MoveTowards(transform.position, Exit_Position[Current_target].transform.position, step);
 
         if (Vector3.Distance(transform.position, Exit_Position[Current_target].transform.position) < 0.5)
         {
-
-            GameObject.Find("SpawnManager").GetComponent<SpawnManager>().MaxDogo--;
+            if (pet_bar() >= 0.7)
+            {
+                DogSaiuFeliz.Invoke();
+            }
+            GameObject.Find("SpawnManager").GetComponent<SpawnManager>().NDogo--;
             DogSaiu.Invoke();
             Destroy(gameObject);         
             

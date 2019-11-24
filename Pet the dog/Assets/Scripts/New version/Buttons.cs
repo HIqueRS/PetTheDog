@@ -8,6 +8,8 @@ public class Buttons : MonoBehaviour
 
     public bool landscape;
     // Start is called before the first frame update
+    public Points point;
+
     void Start()
     {
         
@@ -22,9 +24,18 @@ public class Buttons : MonoBehaviour
     public void Jogar()
     {
         if(!landscape)
+        {
+            Destroy(GameObject.Find("Gerente"));
+            point.Point = 0;
             SceneManager.LoadScene("New game");
+        }           
         else
+        {
+            Destroy(GameObject.Find("Gerente"));
+            point.Point = 0;
             SceneManager.LoadScene("New game 1");
+        }
+            
     }
 
     public void Back_To_Menu()

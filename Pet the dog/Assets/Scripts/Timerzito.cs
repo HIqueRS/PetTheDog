@@ -43,4 +43,9 @@ public class Timerzito : MonoBehaviour
     {
         maxtime -= 15;
     }
+
+    public void AddTime()
+    {
+        maxtime += 5;
+    }
 }

@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3397257560894997138}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -2.1, y: 15.1, z: -21.8}
+  m_LocalPosition: {x: -3.6, y: 16.8, z: -21.8}
   m_LocalScale: {x: 1.6647617, y: 1.6647617, z: 1.6647617}
   m_Children: []
   m_Father: {fileID: 4720567025389501610}
@@ -5020,6 +5020,13 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  DogSaiuFeliz:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  aux_b: 0
+  snap: {fileID: 11400000, guid: 6f3e9a7f8e08a4743be1284f1863e26b, type: 2}
 --- !u!1 &7278070291363466779
 GameObject:
   m_ObjectHideFlags: 0
@@ -5046,7 +5053,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7278070291363466779}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4, y: 21.47, z: -3}
+  m_LocalPosition: {x: -4, y: 21.56, z: 0}
   m_LocalScale: {x: 1.5059743, y: 1.6181407, z: 1.9613825}
   m_Children: []
   m_Father: {fileID: 4720567025389501610}
